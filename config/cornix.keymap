@@ -335,7 +335,7 @@
             bindings = <
 &trans  &trans  &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP                    &trans    &mt LSHFT INT3  &msc SCRL_UP    &trans           &trans  &trans
 &trans  &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN                  &to 0     &trans          &msc SCRL_DOWN  &msc SCRL_RIGHT  &trans  &trans
-&trans  &trans  &none           &none           &none            &mkp MB3        &kp MUTE &none  &none     &none           &none           &none            &trans  &kp UP
+&trans  &trans  &none           &none           &none            &mkp MB3      &kp MUTE   &none  &none     &none           &none           &none            &trans  &kp UP
 &trans  &trans  &trans          &trans          &mkp MB1         &mkp MB2                        &mkp MB2  &mkp MB1        &trans          &none            &none   &none
             >;
         };
