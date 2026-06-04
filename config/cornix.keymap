@@ -136,6 +136,56 @@
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <200>;
         };
+
+        // TD0: 単押しセミコロン / 2回押しクォート
+        td_semi: tap_dance_semi {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <120>;
+            bindings = <&kp SEMI>, <&kp SQT>;
+        };
+
+        // TD1: 単押しスペース / ホールドでLayer 1 / 2回押しでLayer 1トグル
+        td_space: tap_dance_space {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <120>;
+            bindings = <&lt 1 SPACE>, <&tog 1>;
+        };
+
+        // TD2: 単押し「英数(LANG2)」 / ホールドでLayer 2
+        td_lang1: tap_dance_lang1 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <120>;
+            bindings = <&lt 2 INT2>, <&kp INT2>;
+        };
+
+        // TD3: 単押し「かな(LANG1)」 / ホールドでLayer 3
+        td_lang2: tap_dance_lang2 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <120>;
+            bindings = <&lt 3 INT1>, <&kp INT1>;
+        };
+
+        // TD5: ホールドでLayer 5 / 2回押しでLayer 5トグル
+        td_layer5: tap_dance_l5 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&mo 5>, <&tog 5>;
+        };
+
+        // TD7: 単押しスペース / ホールドでLayer 7 / 2回押しでLayer 7トグル
+        td_space_l7: tap_dance_space_l7 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&lt 7 SPACE>, <&tog 7>;
+        };
+
+
     };
 
     conditional_layers {
@@ -150,32 +200,116 @@
     combos {
         compatible = "zmk,combos";
 
-        cb_ltm {
+        // Q + W ➔ F2
+        combo_f2 {
+            timeout-ms = <50>;
+            key-positions = <1 2>;
+            bindings = <&kp F2>;
+        };
+
+        // W + E ➔ F3
+        combo_f3 {
+            timeout-ms = <50>;
+            key-positions = <2 3>;
+            bindings = <&kp F3>;
+        };
+
+        // E + R ➔ F4
+        combo_f4 {
+            timeout-ms = <50>;
+            key-positions = <3 4>;
+            bindings = <&kp F4>;
+        };
+
+        // R + T ➔ F5
+        combo_f5 {
+            timeout-ms = <50>;
+            key-positions = <4 5>;
+            bindings = <&kp F5>;
+        };
+
+        // D + F ➔ # (JIS/USに応じたShift+3)
+        combo_hash {
+            timeout-ms = <50>;
+            key-positions = <15 16>;
+            bindings = <&kp LS(N3)>;
+        };
+
+        // F + G ➔ ( (Shift+8)
+        combo_lparen {
+            timeout-ms = <50>;
+            key-positions = <16 17>;
+            bindings = <&kp LS(N8)>;
+        };
+
+        // H + J ➔ ) (Shift+9)
+        combo_rparen {
+            timeout-ms = <50>;
+            key-positions = <22 23>;
+            bindings = <&kp LS(N9)>;
+        };
+
+        // J + K ➔ [
+        combo_lbkt {
+            timeout-ms = <50>;
+            key-positions = <23 24>;
+            bindings = <&kp LBKT>;
+        };
+
+        // K + L ➔ -
+        combo_minus {
+            timeout-ms = <50>;
+            key-positions = <24 25>;
+            bindings = <&kp MINUS>;
+        };
+
+        // L + ; ➔ '
+        combo_quote {
+            timeout-ms = <50>;
+            key-positions = <25 26>;
+            bindings = <&kp SQT>;
+        };
+
+        // V + B ➔ ]
+        combo_rbkt {
+            timeout-ms = <50>;
+            key-positions = <31 32>;
+            bindings = <&kp RBKT>;
+        };
+
+        // N + M ➔ \ (NONUS_HASH / RO)
+        combo_backslash {
+            timeout-ms = <50>;
+            key-positions = <35 36>;
+            bindings = <&kp BSLH>;
+        };
+
+        // COMMA + DOT ➔ \_ろ (INT1)
+        combo_ro {
+            timeout-ms = <50>;
+            key-positions = <36 37>;
+            bindings = <&kp INT1>;
+        };
+
+        // P + O ➔ =
+        combo_equal {
+            timeout-ms = <50>;
+            key-positions = <13 14>;
+            bindings = <&kp EQUAL>;
+        };
+
+        // BSPC + P ➔ ¥ (INT3)
+        combo_yen {
+            timeout-ms = <50>;
+            key-positions = <12 13>;
+            bindings = <&kp INT3>;
+        };
+
+        // GRAVE + TAB ➔ ESC
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <0 7>;
             bindings = <&kp ESC>;
-            key-positions = <2 4>;
-            layers = <0 1>;
-        };
-
-        cb_lm {
-            bindings = <&kp TAB>;
-            key-positions = <14 16>;
-            layers = <0 1>;
-        };
-
-        cb_enter {
-            bindings = <&kp RET>;
-            key-positions = <21 19>;
-            layers = <0 1>;
-        };
-
-        layer3 {
-            bindings = <&kp N3>;
-            key-positions = <5 6>;
-        };
-
-        layer4 {
-            bindings = <&kp N4>;
-            key-positions = <5 6>;
         };
     };
 
@@ -183,135 +317,92 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            display-name = "Base";
-
-            // ------------------------------------------------------------------------------------------------------------
-            // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
-            // |  ESC  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
-            // |  TAB  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-            // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-            //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
-
             bindings = <
-&kp TAB  &kp Q          &kp W         &kp E         &kp R                &kp T                      &kp Y      &kp U                &kp I            &kp O         &kp P             &kp BSLH
-&kp ESC  &hm_l LCTRL A  &hm_l LALT S  &hm_l LGUI D  &hm_shift_l LSHFT F  &kp G                      &kp H      &hm_shift_r RSHFT J  &hm_r RGUI K     &hm_r RALT L  &hm_r RCTRL SEMI  &kp SQT
-&mo 4    &hm_l LGUI Z   &kp X         &kp C         &kp V                &kp B        &none  &none  &kp N      &kp M                &kp COMMA        &kp DOT       &kp FSLH          &kp BACKSPACE
-&none    &none          &none         &lt 6 ESCAPE  &mo 2                &lt 5 SPACE                &kp ENTER  &mo 3                &lt 2 BACKSPACE  &none         &none             &none
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-        };
-
-        win_layer {
-            display-name = "Windows";
-
-            // ------------------------------------------------------------------------------------------------------------
-            // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
-            // |  ESC  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
-            // |  TAB  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-            // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-            //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
-
-            bindings = <
-&trans    &trans         &trans        &trans         &trans               &trans                  &trans  &trans               &trans         &trans        &trans            &trans
-&trans    &hm_l LCTRL A  &hm_l LALT S  &hm_l LCTRL D  &hm_shift_l LSHFT F  &trans                  &trans  &hm_shift_r RSHFT J  &hm_r RCTRL K  &hm_r RALT L  &hm_r RCTRL SEMI  &trans
-&kp LGUI  &trans         &trans        &trans         &trans               &trans  &trans  &trans  &trans  &trans               &trans         &trans        &trans            &trans
-&none     &none          &none         &trans         &trans               &trans                  &trans  &trans               &trans         &none         &none             &none
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-        };
-
-        Symbol_layer {
-            display-name = "Symbols";
-
-            // TODO: Some binds are waiting for shifted keycode support.
-            // -------------------------------
-            // |       |  F1 |  F2 |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
-            // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |  F12  |
-            // |       |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   |   |
-            // |       |  =  |  -  |  +   |  {   |  }   |        |  |       |  [   |  ]    |  ;    |  :   |   \   |       |
-            //               |     |      |      |      |        |  |       |      |       |       |      |
-
-            bindings = <
-&none  &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT                  &kp CARET  &kp AMPS      &kp ASTRK  &kp LPAR   &kp RPAR  &kp PIPE
-&none  &none     &kp LBKT  &kp RBKT  &kp LBRC  &kp RBRC                   &kp EQUAL  &kp UNDER     &kp MINUS  &kp PLUS   &kp DQT   &kp SQT
-&none  &none     &kp RBKT  &kp RPAR  &kp PIPE  &kp BSLH   &trans  &trans  &kp FSLH   &kp QUESTION  &kp GRAVE  &kp TILDE  &kp SQT   &none
-&none  &none     &none     &none     &trans    &trans                     &kp TILDE  &trans        &kp GRAVE  &none      &none     &none
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-        };
-
-        Mix_layer {
-            display-name = "Mix";
-
-            // ------------------------------------------------------------------------------------------------------------
-            // | BTCLR | BT1  | BT2  |  BT3  |  BT4  |  BT5 |                |      |      |       |      |       |       |
-            // |       | INS  | PSCR | GUI   |       |      |                | PGUP |      |   ^   |      |       |       |
-            // |       | ALT  | CTRL | SHIFT |       | CAPS |                | PGDN |   <- |   v   |  ->  |  DEL  | BKSPC |
-            // |       | UNDO | CUT  | COPY  | PASTE |      |      |  |      |      |      |       |      |       |       |
-            //                |      |       |       |      |      |  |      |      |      |       |      |
-
-            bindings = <
-&trans  &kp F1  &kp F2  &kp F3   &kp F4  &kp F5                         &kp F6    &kp F7     &kp F8     &kp F9    &kp F10  &kp F11
-&trans  &kp N5  &kp N4  &kp N3   &kp N2  &kp N1                         &kp BSPC  &kp MINUS  &kp EQUAL  &kp PLUS  &kp DQT  &kp F12
-&trans  &kp N6  &kp N7  &kp N8   &kp N9  &kp N0         &trans  &trans  &kp TAB   &kp INS    &kp HOME   &kp END   &trans   &trans
-&none   &none   &none   &kp TAB  &trans  &kp BACKSPACE                  &trans    &trans     &kp N3     &none     &none    &none
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-        };
-
-        Adjust_layer {
-            display-name = "Adjust";
-
-            // ----------------------------------------------------------------------------------------------------------------------------
-            // | BTCLR  |  BT1    |  BT2    |   BT3   |   BT4   |   BT5   |                  |      |      |       |      |       |       |
-            // | moDEBUG| RGB_HUD | RGB_HUI | RGB_SAD | RGB_SAI | RGB_EFF |                  |      |      |       |      |       |       |
-            // | EXTPWR | RGB_BRD | RGB_BRI |         |         |         |                  |      |      |       |      |       |       |
-            // |        |         |         |         |         |         | RGB_TOG | |      |      |      |       |      |       |       |
-            //                    |         |         |         |         |         | |      |      |      |       |      |
-
-            bindings = <
-&bt BT_CLR      &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                   &none   &none  &none   &none  &none             &none
-&none           &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4                  &tog 1  &to 0  &none   &none  &none             &tog 1
-&bt BT_CLR_ALL  &none          &none          &none          &none          &none          &trans  &trans  &none   &none  &none   &none  &ext_power EP_ON  &kp CAPSLOCK
-&none           &none          &none          &none          &none          &none                          &none   &none  &kp N4  &none  &none             &none
+                &kp GRAVE &kp Q     &kp W     &kp E     &kp R     &kp T                         &kp Y     &kp U     &kp I     &kp O     &kp P     &kp BSPC
+                &kp TAB   &kp A     &kp S     &kp D     &kp F     &kp G                         &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp RET
+                &kp LSHFT &kp Z     &kp X     &kp C     &kp V     &kp B     &lt 9 MUTE          &to 0     &kp N     &kp M     &kp COMMA &kp DOT   &mt RSHFT FSLH &kp UP
+                &kp LCTRL &kp LGUI  &kp LALT  &td_lang2 &td_space &td_layer5                    &td_lang1 &td_space_l7 &td_lang2 &none    &none     &kp DOWN  &kp RIGHT &kp LEFT
             >;
         };
 
-        Navi_layer {
-            display-name = "Navi";
+        layer_1 {
             bindings = <
-&none  &none  &none           &mmv MOVE_UP    &kp PAGE_UP      &kp PAGE_DOWN                   &mkp MB1  &mkp MB3  &mkp MB2  &msc SCRL_UP  &msc SCRL_DOWN  &none
-&none  &none  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_UP                    &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT     &none           &none
-&none  &none  &none           &none           &none            &msc SCRL_DOWN  &trans  &trans  &trans    &trans    &none     &none         &none           &none
-&none  &none  &none           &mo 7           &trans           &trans                          &none     &none     &kp N5    &none         &none           &none
+                &trans    &kp SLCK  &kp HOME  &kp UP    &kp END   &kp PG_UP                     &kp LS(N1) &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp LS(N3) &trans
+                &trans    &kp LSHFT &kp LEFT  &kp DOWN  &kp RIGHT &kp PG_DN                     &kp LS(N2) &mt RSHFT KP_N4 &mt RCTRL KP_N5 &mt RALT KP_N6 &kp LS(SQT) &trans
+                &trans    &kp LCTRL &kp F2    &kp DEL   &kp RET   &kp BSPC  &trans              &to 0     &kp KP_N0 &kp KP_N1 &kp KP_N2 &kp KP_N3 &trans    &trans
+                &trans    &trans    &trans    &mkp MB1  &trans    &mo 5                         &mo 5     &trans    &mkp MB1  &none     &none     &trans    &trans    &trans
             >;
         };
 
-        KeyPad_layer {
-            display-name = "NumPad";
+        layer_2 {
             bindings = <
-&mo 7  &none  &none  &none  &none  &none                  &kp KP_N7        &kp KP_N8        &kp KP_N9        &kp KP_MINUS  &kp KP_MULTIPLY  &none
-&none  &none  &none  &none  &none  &none                  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_N6        &kp KP_PLUS   &kp KP_DIVIDE    &none
-&none  &none  &none  &none  &none  &none  &trans  &trans  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_N3        &none         &none            &none
-&none  &none  &none  &none  &none  &mo 7                  &kp KP_N0        &kp KP_DOT       &kp KP_NUMBER_0  &none         &none            &none
+                &trans    &trans    &kp N7    &kp N8    &kp N9    &trans                        &trans    &kp HOME  &kp UP    &kp END   &trans    &trans
+                &trans    &trans    &kp N4    &kp N5    &kp N6    &trans                        &mkp MB1  &kp LEFT  &kp DOWN  &kp RIGHT &trans    &trans
+                &trans    &kp N0    &kp N1    &kp N2    &kp N3    &kp FSLH  &trans              &to 0     &trans    &trans    &trans    &trans    &trans    &trans
+                &trans    &trans    &trans    &trans    &trans    &trans                        &trans    &trans    &trans    &none     &none     &trans    &trans    &trans
             >;
         };
 
-        Debug_layer {
-            display-name = "Debug";
-
-            // ----------------------------------------------------------------------------------------------------------------------------
-            // | BTCLR  |  BT1    |  BT2    |   BT3   |   BT4   |   BT5   |                  |      |      |       |      |       |       |
-            // | EXTPWR | BTCLR | RGB_HUI | RGB_SAD | RGB_SAI | RGB_EFF |                  |      |      |       |      |       |       |
-            // |        | RGB_BRD | RGB_BRI |         |         |         |                  |      |      |       |      |       |       |
-            // |        |         |         |         |         |         | RGB_TOG | |      |      |      |       |      |       |       |
-            //                    |         |         |         |         |         | |      |      |      |       |      |
-
+        layer_3 {
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                  &none        &none  &none   &none  &none  &none
-&none       &none         &none         &none         &none         &none                         &none        &none  &none   &none  &none  &none
-&none       &none         &none         &none         &none         &bootloader   &trans  &trans  &bootloader  &none  &none   &none  &none  &none
-&none       &none         &none         &none         &none         &none                         &none        &none  &kp N7  &none  &none  &none
+                &trans    &trans    &msc SCRL_LEFT &mmv MOVE_UP &msc SCRL_RIGHT &msc SCRL_UP    &none     &kp F9    &kp F10   &kp F11   &kp F12   &trans
+                &trans    &trans    &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &mkp MB1      &none     &kp F5    &kp F6    &kp F7    &kp F8    &trans
+                &trans    &trans    &trans    &msc SCRL_UP &msc SCRL_DOWN &mkp MB2 &trans         &trans    &none     &kp F1    &kp F2    &kp F3    &kp F4    &trans
+                &trans    &trans    &trans    &mkp MB3  &mkp MB1  &mkp MB2                      &mkp MB2  &mkp MB1  &mkp MB3  &none     &none     &trans    &trans    &trans
+            >;
+        };
+
+        layer_4 {
+            bindings = <
+                &trans    &trans    &msc SCRL_LEFT &mmv MOVE_UP &msc SCRL_RIGHT &msc SCRL_UP    &trans    &mt LSHFT INT3 &msc SCRL_UP &trans    &trans    &trans
+                &trans    &trans    &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &msc SCRL_DOWN &to 0    &trans    &msc SCRL_DOWN &msc SCRL_RIGHT &trans &trans
+                &trans    &trans    &none     &none     &none     &mkp MB3  &kp MUTE            &trans    &trans    &none     &none     &none     &trans    &kp UP
+                &trans    &trans    &trans    &trans    &mkp MB1  &mkp MB2                      &mkp MB2  &mkp MB1  &trans    &none     &none     &kp RIGHT &kp DOWN  &kp LEFT
+            >;
+        };
+
+        layer_5 {
+            bindings = <
+                &trans    &kp F1    &kp F2    &kp F3    &kp F4    &kp F5                        &kp F6    &kp F7    &kp F8    &kp F9    &kp F10   &trans
+                &trans    &kp N1    &kp N2    &kp N3    &kp N4    &kp N5                        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &trans
+                &trans    &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &trans              &trans    &trans    &trans    &trans    &trans    &trans    &trans
+                &trans    &trans    &trans    &trans    &trans    &trans                        &trans    &trans    &trans    &none     &none     &trans    &trans    &trans
+            >;
+        };
+
+        layer_6 {
+            bindings = <
+                &trans    &trans    &trans    &trans    &trans    &trans                        &trans    &trans    &trans    &trans    &trans    &trans
+                &trans    &kp N1    &kp N2    &kp N3    &kp N4    &kp N5                        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &trans
+                &trans    &trans    &trans    &trans    &trans    &kp PSCRN &trans              &to 0     &trans    &kp NUHS  &kp RBKT  &trans    &trans    &trans
+                &trans    &trans    &trans    &trans    &trans    &trans                        &trans    &trans    &trans    &none     &none     &trans    &trans    &trans
+            >;
+        };
+
+        layer_7 {
+            bindings = <
+                &trans    &trans    &trans    &kp UP    &trans    &kp INS                       &kp HOME  &kp PG_DN &kp PG_UP &kp END   &trans    &trans
+                &trans    &none     &kp LEFT  &kp DOWN  &kp RIGHT &kp DEL                       &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &trans    &trans
+                &trans    &trans    &trans    &trans    &trans    &kp PSCRN &trans              &trans    &trans    &trans    &trans    &trans    &trans    &trans
+                &trans    &trans    &trans    &mkp MB1  &trans    &trans                        &trans    &trans    &trans    &none     &none     &trans    &trans    &trans
+            >;
+        };
+
+        layer_8 {
+            bindings = <
+                &trans    &trans    &trans    &trans    &trans    &trans                        &trans    &trans    &trans    &trans    &trans    &trans
+                &trans    &kp F1    &kp F2    &kp F3    &kp F4    &kp F5                        &kp F6    &kp F7    &kp F8    &kp F9    &kp F10   &trans
+                &trans    &trans    &trans    &trans    &trans    &trans    &trans              &trans    &trans    &kp F11   &kp F12   &trans    &trans    &trans
+                &trans    &trans    &trans    &trans    &trans    &trans                        &trans    &trans    &trans    &none     &none     &trans    &trans    &trans
+            >;
+        };
+
+        layer_9 {
+            bindings = <
+                &none     &none     &none     &none     &none     &none                         &none     &none     &none     &none     &none     &none
+                &none     &none     &none     &none     &none     &none                         &none     &none     &none     &none     &none     &none
+                &none     &none     &none     &none     &none     &none     &kp MUTE            &to 0     &none     &none     &none     &none     &none     &none
+                &none     &none     &none     &none     &none     &none                         &none     &none     &none     &none     &none     &none     &none     &none
             >;
         };
     };
