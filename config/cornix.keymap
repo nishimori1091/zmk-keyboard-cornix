@@ -385,7 +385,7 @@
             bindings = <
 &none  &none  &none  &none  &none  &none                &none  &none  &none  &none  &none  &none
 &none  &none  &none  &none  &none  &none                &none  &none  &none  &none  &none  &none
-&none  &none  &none  &none  &none  &none  &kp MUTE &to 0 &none  &none  &none  &none  &none  &none
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp F11 &kp F12  &trans   &trans  &trans
 &none  &none  &none  &none  &none  &none                &none  &none  &none  &none  &none  &none
             >;
         };
