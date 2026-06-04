@@ -37,6 +37,11 @@
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5  // right hand
 #define THUMBS LH1 LH0 RH0 RH1
 #define KEYS_T LH1 LH0 RH0 RH1
+
+// 重複定義エラーを防ぐための処理
+#ifdef ZMK_POINTING_DEFAULT_SCRL_VAL
+#undef ZMK_POINTING_DEFAULT_SCRL_VAL
+#endif
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 15
 
 / {
@@ -360,7 +365,7 @@
             bindings = <
 &trans  &trans  &trans    &kp UP    &trans     &kp INS                  &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &trans  &trans
 &trans  &none   &kp LEFT  &kp DOWN  &kp RIGHT  &kp DEL                  &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &trans  &trans
-&trans  &trans  &trans    &trans    &trans     &kp PSCRN &trans &trans  &trans    &trans     &trans     &trans     &trans     &trans
+&trans  &trans  &trans    &trans    &trans     &kp PSCRN &trans &trans  &trans    &trans     &trans     &trans     &trans  &trans
 &trans  &trans  &trans    &mkp MB1  &trans     &trans                   &trans    &trans     &trans     &none      &none   &none
             >;
         };
