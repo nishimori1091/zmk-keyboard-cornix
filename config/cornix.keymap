@@ -291,8 +291,8 @@
             bindings = <
 &kp GRAVE  &kp Q          &kp W         &kp E         &kp R                &kp T                      &kp Y      &kp U                &kp I            &kp O         &kp P             &kp BSPC
 &kp TAB    &hm_l LCTRL A  &hm_l LALT S  &hm_l LGUI D  &hm_shift_l LSHFT F  &kp G                      &kp H      &hm_shift_r RSHFT J  &hm_r RGUI K     &hm_r RALT L  &hm_r RCTRL SEMI  &kp RET
-&kp LSHFT  &kp Z          &kp X         &kp C         &kp V                &kp B        &lt 9 MUTE &to 0  &kp N      &kp M                &kp COMMA        &kp DOT       &mt RSHFT FSLH    &kp UP
-&kp LCTRL  &kp LGUI       &kp LALT      &td_lang2     &td_space            &td_layer5                 &td_lang1  &td_space_l7         &td_lang2        &none         &none             &none
+&kp LSHFT  &kp Z          &kp X         &kp C         &kp V                &kp B        &none &none  　&kp N      &kp M                &kp COMMA        &kp DOT       &mt RSHFT FSLH    &kp UP
+&kp LCTRL  &kp LGUI       &kp LALT      &td_lang2     &td_space            &td_layer5                 &td_lang1  &td_space_l7         &td_lang2        &kp LEFT         &kp RIGHT      &kp DOWN
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
